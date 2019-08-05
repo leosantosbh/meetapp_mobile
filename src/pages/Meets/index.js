@@ -13,7 +13,7 @@ import {
   Title,
   LogoImage,
   ListData,
-  List,
+  MeetList,
   ListDateText,
   Meet,
   MeetTop,
@@ -95,11 +95,10 @@ function Meets({ isFocused, navigation }) {
             <Icon name="keyboard-arrow-right" size={35} color="#FFF" />
           </TouchableOpacity>
         </ListData>
-        <List
+        <MeetList
           data={meets}
           keyExtractor={meet => String(meet.id)}
           horizontal
-          pagingEnabled
           renderItem={({ item }) => (
             <Meet>
               <MeetTop>

@@ -39,14 +39,17 @@ export const ListDateText = styled.Text`
   font-size: 20px;
 `;
 
-export const List = styled.FlatList`
-  padding-top: 10px;
+export const MeetList = styled.FlatList.attrs({
+  showsHorizontalScrollIndicator: false,
+  contentContainerStyle: { padding: 10 },
+})`
+  flex: 1 auto;
 `;
 
 export const Meet = styled.View`
   background: rgba(0, 0, 0, 0.3);
   border-radius: 4px;
-  flex: 1;
+  flex: 1 auto;
   justify-content: space-between;
   max-width: ${Dimensions.get('window').width - 60};
   margin: 0px 10px 10px 10px;

@@ -25,16 +25,17 @@ export const LogoImage = styled.Image`
   align-items: center;
 `;
 
-export const List = styled.FlatList.attrs({
-  showVerticalScrollIndicator: false,
+export const MyList = styled.FlatList.attrs({
+  showsVerticalScrollIndicator: false,
+  contentContainerStyle: { padding: 20 },
 })`
-  margin: 20px;
-  flex: 1;
+  flex: 1 auto;
 `;
+
 export const Agend = styled.View`
   background: rgba(0, 0, 0, 0.3);
   border-radius: 4px;
-  flex: 1;
+  flex: 1 auto;
   justify-content: space-between;
   max-width: ${Dimensions.get('window').width - 60};
   margin: 0px 10px 20px 10px;

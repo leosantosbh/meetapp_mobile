@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { withNavigationFocus } from 'react-navigation';
-import { StatusBar } from 'react-native';
+import { StatusBar, View } from 'react-native';
 import { format, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt-BR';
 import logo from '~/assets/logo.png';
@@ -12,7 +12,7 @@ import {
   Container,
   Title,
   LogoImage,
-  List,
+  MyList,
   Agend,
   AgendBanner,
   AgendTitle,
@@ -47,9 +47,19 @@ function MyMeets({ isFocused }) {
     loadAgend();
   }
 
-  async function handleTest(id) {
+  async function handleRemove(id) {
     await api.delete(`agends/${id}`);
-    loadAgend();
+    refreshList();
+  }
+
+  function renderSeparator() {
+    return (
+      <View
+        style={{
+          height: 1,
+        }}
+      />
+    );
   }
 
   return (
@@ -59,7 +69,7 @@ function MyMeets({ isFocused }) {
         <Title>
           <LogoImage source={logo} />
         </Title>
-        <List
+        <MyList
           data={agends}
           keyExtractor={agend => String(agend.id)}
           renderItem={({ item }) => (
@@ -86,13 +96,14 @@ function MyMeets({ isFocused }) {
                 <Icon name="person" size={20} color="#ffc" />
                 <AgendOwnerText>{`Owner: ${item.mett.user.name}`}</AgendOwnerText>
               </AgendOwner>
-              <UnsubscribeButton onPress={() => handleTest(item.id)}>
+              <UnsubscribeButton onPress={() => handleRemove(item.id)}>
                 UNSUBSCRIBE
               </UnsubscribeButton>
             </Agend>
           )}
           onRefresh={refreshList}
           refreshing={refreshing}
+          ItemSeparatorComponent={renderSeparator}
         />
       </Container>
     </Background>
