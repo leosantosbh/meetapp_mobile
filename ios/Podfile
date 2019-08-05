@@ -34,6 +34,10 @@ target 'meetapp_mobile2' do
 
   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
+  pod 'CodePush', :path => '../node_modules/react-native-code-push'
+
+  pod 'react-native-onesignal', :path => '../node_modules/react-native-onesignal'
+
   target 'meetapp_mobile2Tests' do
     inherit! :search_paths
     # Pods for testing
