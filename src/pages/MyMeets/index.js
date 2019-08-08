@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { withNavigationFocus } from 'react-navigation';
-import { StatusBar, View } from 'react-native';
+import { StatusBar, View, Alert } from 'react-native';
 import { format, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt-BR';
 import logo from '~/assets/logo.png';
@@ -48,8 +48,12 @@ function MyMeets({ isFocused }) {
   }
 
   async function handleRemove(id) {
-    await api.delete(`agends/${id}`);
-    refreshList();
+    try {
+      await api.delete(`agends/${id}`);
+      refreshList();
+    } catch (error) {
+      Alert.alert('Erro na requisição', error.response.data.error);
+    }
   }
 
   function renderSeparator() {
